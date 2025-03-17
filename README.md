@@ -3,4 +3,4 @@
 # Checkpoint 1:
 PDF:
 
-Video:
+Video: https://youtu.be/ir-iNatJYHQ
