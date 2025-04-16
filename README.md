@@ -12,8 +12,8 @@ Video:
 
 Demographics Form: https://forms.gle/YjbgsHKb29nP5Zru6
 
-Experiment 1 (easy) Form: https://forms.gle/cXb51bpXWjCawAgg9
+Experiment 1 (simple) Form: https://forms.gle/cXb51bpXWjCawAgg9
 
-Experiment 2 (medium) Form: https://forms.gle/aPy2qCiVXZGw4k7LA
+Experiment 2 (moderate) Form: https://forms.gle/aPy2qCiVXZGw4k7LA
 
-Experiment 3 (hard) Form: https://forms.gle/Lve6La7kpZxWLQJH6
+Experiment 3 (complex) Form: https://forms.gle/Lve6La7kpZxWLQJH6
