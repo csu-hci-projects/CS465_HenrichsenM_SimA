@@ -9,7 +9,7 @@ Video: https://youtu.be/ir-iNatJYHQ
 # Checkpoint 2:
 PDF:
 
-Video 1 (Discussing and Showing Current State):
+Video 1 (Discussing and Showing Current State): https://youtu.be/0cUkqUHeQ4o
 
 Video 2 (Discussing Code): https://youtu.be/WRxbsL7JMlA
 
