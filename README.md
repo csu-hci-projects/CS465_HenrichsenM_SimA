@@ -1,4 +1,5 @@
 # CS465_HenrichsenM_SimA
+## Link to Latex File = https://www.overleaf.com/read/mxcknhnvbdwf#d1f6e2
 
 # Checkpoint 1:
 PDF: https://github.com/csu-hci-projects/CS465_HenrichsenM_SimA/blob/main/CS465__Virtual_Mixed_Input_Design___Aidan_Sim__Melia_Henrichsen.pdf
