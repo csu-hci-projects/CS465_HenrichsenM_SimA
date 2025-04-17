@@ -11,7 +11,7 @@ PDF:
 
 Video 1 (Discussing and Showing Current State):
 
-Video 2 (Discussing Code): 
+Video 2 (Discussing Code): https://youtu.be/WRxbsL7JMlA
 
 Demographics Form: https://forms.gle/YjbgsHKb29nP5Zru6
 
