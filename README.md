@@ -8,7 +8,9 @@ Video: https://youtu.be/ir-iNatJYHQ
 # Checkpoint 2:
 PDF:
 
-Video:
+Video 1 (Discussing and Showing Current State):
+
+Video 2 (Discussing Code): 
 
 Demographics Form: https://forms.gle/YjbgsHKb29nP5Zru6
 
