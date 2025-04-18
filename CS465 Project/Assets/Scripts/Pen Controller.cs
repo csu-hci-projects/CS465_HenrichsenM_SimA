@@ -14,7 +14,8 @@ public class PenController : MonoBehaviour
 {
     public Transform leftDrawOrigin;
     public Transform rightDrawOrigin;
-    public XRHandSubsystem handSubsystem;
+    public Transform leftHandOrigin;
+    public Transform rightHandOrigin;
     private bool isRightHand = true;
     public Material drawingMaterial;
 
@@ -30,6 +31,8 @@ public class PenController : MonoBehaviour
 
     private float rightValue;
     private float leftValue;
+    private bool leftHandPoint;
+    private bool rightHandPoint;
 
     public PlayerInput input;
 
@@ -41,8 +44,6 @@ public class PenController : MonoBehaviour
 
         input.vrInput.LeftHandDrawing.performed += OnLeftHandDrawing;
         input.vrInput.RightHandDrawing.performed += OnRightHandDrawing;
-
-        handSubsystem = XRGeneralSettings.Instance.Manager.activeLoader.GetLoadedSubsystem<XRHandSubsystem>();
     }
 
     private void OnLeftHandDrawing(InputAction.CallbackContext context)
@@ -57,50 +58,7 @@ public class PenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (handSubsystem != null)
-        {
-            XRHand hand = isRightHand ? handSubsystem.rightHand : handSubsystem.leftHand;
-
-            if (hand.isTracked)
-            {
-                var indexTip = hand.GetJoint(XRHandJointID.IndexTip);
-                var thumbTip = hand.GetJoint(XRHandJointID.ThumbTip);
-
-                if (indexTip.TryGetPose(out Pose indexPose) && thumbTip.TryGetPose(out Pose thumbPose))
-                {
-                    float pinchDistance = Vector3.Distance(indexPose.position, thumbPose.position);
-
-                    if (pinchDistance < 0.02f)
-                    {
-                        if (currentDrawing == null)
-                        {
-                            GameObject line = Instantiate(lineRenderer);
-                            currentDrawing = lineRenderer.GetComponent<LineRenderer>();
-                            points.Clear();
-
-                            points.Add(indexPose.position);
-                            currentDrawing.positionCount = points.Count;
-                            currentDrawing.SetPositions(points.ToArray());
-                            lastPoint = indexPose.position;
-                        }
-
-                        Vector3 currentPosition = indexPose.position;
-                        if (Vector3.Distance(lastPoint, currentPosition) > minDistance)
-                        {
-                            points.Add(currentPosition);
-                            currentDrawing.positionCount = points.Count;
-                            currentDrawing.SetPositions(points.ToArray());
-                            lastPoint = currentPosition;
-                        }
-                    }
-                    else
-                    {
-                        currentDrawing = null;
-                        points.Clear();
-                    }
-                }
-            }
-        }
+        
         if (leftValue > 0.4f)
         {
             if (currentDrawing == null)
@@ -147,11 +105,74 @@ public class PenController : MonoBehaviour
                 lastPoint = currentPosition;
             }
         }
+        else if (leftHandPoint)
+        {
+            if (currentDrawing == null)
+            {
+                GameObject line = Instantiate(lineRenderer);
+                currentDrawing = lineRenderer.GetComponent<LineRenderer>();
+                points.Clear();
+
+                points.Add(leftHandOrigin.position);
+                currentDrawing.positionCount = points.Count;
+                currentDrawing.SetPositions(points.ToArray());
+                lastPoint = leftHandOrigin.position;
+            }
+
+            Vector3 currentPosition = leftHandOrigin.position;
+            if (Vector3.Distance(lastPoint, currentPosition) > minDistance)
+            {
+                points.Add(currentPosition);
+                currentDrawing.positionCount = points.Count;
+                currentDrawing.SetPositions(points.ToArray());
+                lastPoint = currentPosition;
+            }
+        }
+        else if (rightHandPoint)
+        {
+            if (currentDrawing == null)
+            {
+                GameObject line = Instantiate(lineRenderer);
+                currentDrawing = lineRenderer.GetComponent<LineRenderer>();
+                points.Clear();
+
+                points.Add(rightHandOrigin.position);
+                currentDrawing.positionCount = points.Count;
+                currentDrawing.SetPositions(points.ToArray());
+                lastPoint = rightHandOrigin.position;
+            }
+
+            Vector3 currentPosition = rightHandOrigin.position;
+            if (Vector3.Distance(lastPoint, currentPosition) > minDistance)
+            {
+                points.Add(currentPosition);
+                currentDrawing.positionCount = points.Count;
+                currentDrawing.SetPositions(points.ToArray());
+                lastPoint = currentPosition;
+            }
+        }
         else
         {
             currentDrawing = null;
             points.Clear();
         }
+    }
+
+    public void LeftHandPointTrue()
+    {
+        leftHandPoint = true;
+    }
+    public void LeftHandPointFalse()
+    {
+        leftHandPoint = false;
+    }
+    public void RightHandPointTrue()
+    {
+        rightHandPoint = true;
+    }
+    public void RightHandPointFalse()
+    {
+        rightHandPoint = false;
     }
 
     void OnEnable()
