@@ -16,8 +16,6 @@ public class PenController : MonoBehaviour
     public Transform rightDrawOrigin;
     public Transform leftHandOrigin;
     public Transform rightHandOrigin;
-    private bool isRightHand = true;
-    public Material drawingMaterial;
 
     private LineRenderer currentDrawing;
     public float minDistance = 0.01f;
@@ -25,8 +23,6 @@ public class PenController : MonoBehaviour
     private Vector3 lastPoint;
 
     public GameObject lineRenderer;
-
-    private int colorIndex;
     private int index;
 
     private float rightValue;
@@ -39,7 +35,6 @@ public class PenController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        colorIndex = 0;
         input = new PlayerInput();
 
         input.vrInput.LeftHandDrawing.performed += OnLeftHandDrawing;
